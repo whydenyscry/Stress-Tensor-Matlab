@@ -27,7 +27,7 @@ P = -\frac{1}{3}\text{tr}\boldsymbol{\sigma}.
 \boldsymbol{\sigma}_\text{hyd} = -P\mathbf{I}.
  $$
 
- ### Hydrostatic Stress Tensor
+ ### Deviatoric Stress Tensor
  
  $$
 \boldsymbol{\sigma}' =\boldsymbol{\sigma} - \boldsymbol{\sigma}_\text{hyd}.
