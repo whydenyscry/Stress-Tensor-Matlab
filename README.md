@@ -156,4 +156,4 @@ $$
 		\end{pmatrix}
 $$
 
-![The Mohr's Diagram](https://github.com/whydenyscry/Stress-Tensor-Matlab/tree/main/images/The_Mohrs_Diagram.png)
+![The Mohr's Diagram](https://github.com/whydenyscry/Stress-Tensor-Matlab/blob/main/images/The_Mohrs_Diagram.png)
