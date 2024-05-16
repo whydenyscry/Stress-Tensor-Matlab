@@ -215,6 +215,18 @@ $$
 \sigma_{23} = \frac{1}{2}\left(\sigma_2+\sigma_3\right).
 $$
 
+### Stress Norm
+
+$$
+\sigma_\text{norm} = \sqrt{\text{tr}\left(\boldsymbol{\sigma}^\mathbf{T}\boldsymbol{\sigma}\right)}.
+$$
+
+### Stress Total Measure
+
+$$
+\sigma_\text{tm} = \sqrt{\sigma_1^2+\sigma_2^2+\sigma_3^2}=\sqrt{\frac{1}{3}I_1^2+2J_2}.
+$$
+
 ### Mohr's Diagram
 
 Radii of circles:
