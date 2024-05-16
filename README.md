@@ -1,5 +1,5 @@
 # Stress Tensor in Matlab
-Stress tensor, hydrostatic stress tensor, deviatoric stress tensor, invariants of stress tensor and deviatoric stress tensor, principal stresses, von Mises stress and Mohr's diagram in Matlab for the case when all components of stress tensor are given.
+Stress tensor, hydrostatic stress tensor, deviatoric stress tensor, directional stress tensor, invariants of stress tensor and deviatoric stress tensor, principal stresses and shear stresses, von Mises stress, octahedral stresses and Mohr's diagram in Matlab for the case when all components of stress tensor are given.
 The script is programmed with extended formulas for the purpose of stress-free export to other languages, if necessary.
 
  ## Theoretical background
