@@ -7,7 +7,7 @@ format longG
 components = {-22.2 9.1 7.3 9.1 -16.9 -4.6 7.3 -4.6 31.8};
 [sigma_x, tau_xy, tau_xz, tau_yx, sigma_y, tau_yz, tau_zx, tau_zy, sigma_z] = components{:};
 
-% % symbolic
+% symbolic
 % components = {-22.2 9.1 7.3 9.1 -16.9 -4.6 7.3 -4.6 31.8};
 % components_sym = cellfun(@sym, components, 'UniformOutput', 0);
 % [sigma_x, tau_xy, tau_xz, tau_yx, sigma_y, tau_yz, tau_zx, tau_zy, sigma_z] = components_sym{:};
@@ -33,20 +33,37 @@ J_1 = 0
 J_2 = 1/3*I_1^2 - I_2
 J_3 = 2/27*I_1^3 - 1/3*I_1*I_2 + I_3
 
-p = -1/3*I_1^2 + I_2
-q = -2*(I_1/3)^3 + 1/3*I_1*I_2 - I_3
-alpha = acos(-q/(2*sqrt(-(p/3)^3)))
+theta = asin(-J_3/2*(3/J_2)^(3/2))/3
 
-sigma_1 = 2*sqrt(-p/3)*cos(alpha/3) + 1/3 * I_1
-sigma_2 = -2*sqrt(-p/3)*cos(alpha/3 + pi/3) + 1/3*I_1
-sigma_3 = -2*sqrt(-p/3)*cos(alpha/3 - pi/3) + 1/3*I_1
+sigma_1 = I_1/3 + sqrt(J_2)*(cos(theta) - 1/sqrt(3)*sin(theta))
+sigma_2 = I_1/3 + 2/sqrt(3)*sqrt(J_2)*sin(theta)
+sigma_3 = I_1/3 - sqrt(J_2)*(cos(theta) + 1/sqrt(3)*sin(theta))
 
-sorted_pr = cellfun(@(x) sort(x, "descend"), {sigma_1, sigma_2, sigma_3}, "UniformOutput", 0)
-[sigma_1, sigma_2, sigma_3] = sorted_pr{:}
+% sorted_pr = cellfun(@(x) sort(x, "descend"), {sigma_1, sigma_2, sigma_3}, "UniformOutput", 0)
+% [sigma_1, sigma_2, sigma_3] = sorted_pr{:}
 
-% sigma_vM_via_bf_sigma = sqrt(sigma_x^2 - sigma_x*sigma_y - sigma_x*sigma_z + sigma_y^2 - sigma_y*sigma_z + sigma_z^2 + 3*tau_xy*tau_yx + 3*tau_xz*tau_zx + 3*tau_yz*tau_zy)
-% sigma_vM_via_pr = sqrt(sigma_1^2 - sigma_1*sigma_2 - sigma_1*sigma_3 + sigma_2^2 - sigma_2*sigma_3 + sigma_3^2)
-sigma_vM_via_J_2 = sqrt(3*J_2)
+sigma_1_prime = sigma_1 - I_1/3 
+sigma_2_prime = sigma_2 - I_1/3 
+sigma_3_prime = sigma_3 - I_1/3
+
+tau_13 = 1/2*(sigma_1 - sigma_3)
+tau_12 = 1/2*(sigma_1 - sigma_2)
+tau_23 = 1/2*(sigma_2 - sigma_3)
+
+sigma_13 = 1/2*(sigma_1 + sigma_3)
+sigma_12 = 1/2*(sigma_1 + sigma_2)
+sigma_23 = 1/2*(sigma_2 + sigma_3)
+
+sigma_oct = 1/3*I_1
+
+% tau_oct = 1/3*sqrt((sigma_1 - sigma_2)^2 + (sigma_2 - sigma_3)^2 + (sigma_3 - sigma_1)^2)
+tau_oct = sqrt(2/3*J_2)
+
+bar_bf_sigma_prime = bf_sigma_prime/tau_oct
+
+% sigma_vM = sqrt(sigma_x^2 - sigma_x*sigma_y - sigma_x*sigma_z + sigma_y^2 - sigma_y*sigma_z + sigma_z^2 + 3*tau_xy*tau_yx + 3*tau_xz*tau_zx + 3*tau_yz*tau_zy)
+% sigma_vM = sqrt(sigma_1^2 - sigma_1*sigma_2 - sigma_1*sigma_3 + sigma_2^2 - sigma_2*sigma_3 + sigma_3^2)
+sigma_vM = sqrt(3*J_2)
 
 figure()
 set(groot, "defaultAxesTickLabelInterpreter", "latex");
@@ -65,13 +82,13 @@ title("The Mohr's Diagram", 'FontSize', 16);
 double_pr = cellfun(@double, {sigma_1, sigma_2, sigma_3}, "UniformOutput", 0)
 [sigma_1_double, sigma_2_double, sigma_3_double] = double_pr{:}
 
-R_1 = 1/2*(sigma_2_double - sigma_3_double)
-R_2 = 1/2*(sigma_1_double - sigma_3_double)
-R_3 = 1/2*(sigma_1_double - sigma_2_double)
+R_1 = tau_23
+R_2 = tau_13
+R_3 = tau_12
 
-O_1 = [1/2*(sigma_2_double + sigma_3_double), 0]
-O_2 = [1/2*(sigma_1_double + sigma_3_double), 0]
-O_3 = [1/2*(sigma_1_double + sigma_2_double), 0]
+O_1 = [sigma_23, 0]
+O_2 = [sigma_13, 0]
+O_3 = [sigma_12, 0]
 
 angle = (0:pi/1800:pi);
 
@@ -89,6 +106,6 @@ plot(x_2, y_2, '-k', "LineWidth", 1.5)
 plot(x_3, y_3, '-k', "LineWidth", 1.5)
 fill([x_1, x_2, x_3], [y_1, y_2, y_3], 'k', 'FaceAlpha', 0.5);
 
-% exportgraphics(gcf, "images/The_Mohrs_Diagram.pdf", "ContentType","vector")
-% exportgraphics(gcf, "images/The_Mohrs_Diagram.eps", "ContentType","vector")
-% exportgraphics(gcf, "images/The_Mohrs_Diagram.png", "Resolution", 1200)
+% exportgraphics(gcf, "The_Mohrs_Diagram.pdf", "ContentType","vector")
+% exportgraphics(gcf, "The_Mohrs_Diagram.eps", "ContentType","vector")
+% exportgraphics(gcf, "The_Mohrs_Diagram.png", "Resolution", 1200)
