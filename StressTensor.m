@@ -7,7 +7,7 @@ format longG
 components = {-22.2 9.1 7.3 9.1 -16.9 -4.6 7.3 -4.6 31.8};
 [sigma_x, tau_xy, tau_xz, tau_yx, sigma_y, tau_yz, tau_zx, tau_zy, sigma_z] = components{:};
 
-% symbolic
+%%% symbolic
 % components = {-22.2 9.1 7.3 9.1 -16.9 -4.6 7.3 -4.6 31.8};
 % components_sym = cellfun(@sym, components, 'UniformOutput', 0);
 % [sigma_x, tau_xy, tau_xz, tau_yx, sigma_y, tau_yz, tau_zx, tau_zy, sigma_z] = components_sym{:};
@@ -64,6 +64,12 @@ bar_bf_sigma_prime = bf_sigma_prime/tau_oct
 % sigma_vM = sqrt(sigma_x^2 - sigma_x*sigma_y - sigma_x*sigma_z + sigma_y^2 - sigma_y*sigma_z + sigma_z^2 + 3*tau_xy*tau_yx + 3*tau_xz*tau_zx + 3*tau_yz*tau_zy)
 % sigma_vM = sqrt(sigma_1^2 - sigma_1*sigma_2 - sigma_1*sigma_3 + sigma_2^2 - sigma_2*sigma_3 + sigma_3^2)
 sigma_vM = sqrt(3*J_2)
+
+sigma_norm = sqrt(trace(bf_sigma'*bf_sigma))
+% sigma_norm = sqrt(sigma_x^2 + sigma_y^2 + sigma_z^2 + tau_xy^2 + tau_yx^2 + tau_xz^2 + tau_zx^2 + tau_yz^2 + tau_zy^2)
+
+sigma_tm = sqrt(sigma_1^2 + sigma_2^2 + sigma_3^2)
+% sigma_tm = sqrt(I_1^2/3 + 2*J_2)
 
 figure()
 set(groot, "defaultAxesTickLabelInterpreter", "latex");
