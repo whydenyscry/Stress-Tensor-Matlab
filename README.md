@@ -193,7 +193,7 @@ $$
 $$
 
 $$
-\tau_{23} = \frac{1}{2}\left(\sigma_2-\sigma_3\right).
+\tau_{23} = \frac{1}{2}\left(\sigma_2-\sigma_3\right),
 $$
 
 $$
@@ -218,7 +218,7 @@ $$
 ### Stress Norm
 
 $$
-\sigma_\text{norm} = \sqrt{\text{tr}\left(\boldsymbol{\sigma}^\mathbf{T}\boldsymbol{\sigma}\right)}.
+\sigma_\text{norm} = \left\lVert\boldsymbol{\sigma}\right\rVert_{F}=\sqrt{\text{tr}\left(\boldsymbol{\sigma}\boldsymbol{\sigma}^{\operatorname{H}}\right)}.
 $$
 
 ### Stress Total Measure
