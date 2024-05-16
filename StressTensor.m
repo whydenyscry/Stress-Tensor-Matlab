@@ -35,9 +35,9 @@ J_3 = 2/27*I_1^3 - 1/3*I_1*I_2 + I_3
 
 theta = asin(-J_3/2*(3/J_2)^(3/2))/3
 
-sigma_1 = I_1/3 + sqrt(J_2)*(cos(theta) - 1/sqrt(3)*sin(theta))
+sigma_1 = I_1/3 + 2/sqrt(3)*sqrt(J_2)*sin(theta + 2*pi/3)
 sigma_2 = I_1/3 + 2/sqrt(3)*sqrt(J_2)*sin(theta)
-sigma_3 = I_1/3 - sqrt(J_2)*(cos(theta) + 1/sqrt(3)*sin(theta))
+sigma_3 = I_1/3 + 2/sqrt(3)*sqrt(J_2)*sin(theta - 2*pi/3)
 
 % sorted_pr = cellfun(@(x) sort(x, "descend"), {sigma_1, sigma_2, sigma_3}, "UniformOutput", 0)
 % [sigma_1, sigma_2, sigma_3] = sorted_pr{:}
