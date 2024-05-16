@@ -98,10 +98,8 @@ $$
 		\cos\theta-\frac{1}{\sqrt{3}}\sin\theta\\
 		\frac{2}{\sqrt{3}}\sin\theta\\
 		\cos\theta+\frac{1}{\sqrt{3}}\sin\theta
-		\end{bmatrix}.
+		\end{bmatrix},
 $$
-
-These formulas constitute a closed-form solution for the ordered eigenvalues of any real symmetric matrix, not just a stress.
 
 $$
 \begin{bmatrix}
