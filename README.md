@@ -218,7 +218,7 @@ $$
 ### Stress Norm
 
 $$
-\sigma_\text{norm} = \left\lVert\boldsymbol{\sigma}\right\rVert_{F}=\sqrt{\text{tr}\left(\boldsymbol{\sigma}\boldsymbol{\sigma}^{\operatorname{H}}\right)}.
+\sigma_\text{norm} = \left\lVert\boldsymbol{\sigma}\right\rVert_{F}=\sqrt{\text{tr}\left(\boldsymbol{\sigma}\boldsymbol{\sigma}^{\mathrm{H}}\right)}.
 $$
 
 ### Stress Total Measure
