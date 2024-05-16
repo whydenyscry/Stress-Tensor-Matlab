@@ -86,7 +86,7 @@ $$
 $$
 
 $$
-\begin{bmatrix}
+	\begin{bmatrix}
 			\sigma_1\\
 			\sigma_2\\
 			\sigma_3
@@ -94,11 +94,11 @@ $$
 		I_1\\
 		I_1\\
 		I_1\\
-		\end{bmatrix}+\sqrt{J_2} \begin{bmatrix}
-		\cos\theta-\frac{1}{\sqrt{3}}\sin\theta\\
-		\frac{2}{\sqrt{3}}\sin\theta\\
-		\cos\theta+\frac{1}{\sqrt{3}}\sin\theta
-		\end{bmatrix},
+		\end{bmatrix}+\frac{2}{\sqrt{3}}\sqrt{J_2} \begin{bmatrix}
+		\sin\left(\theta+\frac{2\pi}{3}\right)\\
+		\sin\theta\\
+		\sin\left(\theta-\frac{2\pi}{3}\right)
+		\end{bmatrix}.
 $$
 
 $$
@@ -114,10 +114,10 @@ $$
 		I_1\\
 		I_1\\
 		I_1\\
-		\end{bmatrix}=\sqrt{J_2} \begin{bmatrix}
-		\cos\theta-\frac{1}{\sqrt{3}}\sin\theta\\
-		\frac{2}{\sqrt{3}}\sin\theta\\
-		\cos\theta+\frac{1}{\sqrt{3}}\sin\theta
+		\end{bmatrix}=\frac{2}{\sqrt{3}}\sqrt{J_2} \begin{bmatrix}
+		\sin\left(\theta+\frac{2\pi}{3}\right)\\
+		\sin\theta\\
+		\sin\left(\theta-\frac{2\pi}{3}\right)
 		\end{bmatrix}.
 $$
 
