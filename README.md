@@ -162,7 +162,7 @@ $$
 ### Von Mises Stress
 
 $$
-\sigma_\text{vM} = \sqrt{3J_2} = \frac{1}{2}\sqrt{\left(\sigma_1-\sigma_2\right)^2+\left(\sigma_2-\sigma_3\right)^2+\left(\sigma_3-\sigma_1\right)^2}.
+\sigma_\text{vM} = \sqrt{3J_2} = \frac{1}{\sqrt{2}}\sqrt{\left(\sigma_1-\sigma_2\right)^2+\left(\sigma_2-\sigma_3\right)^2+\left(\sigma_3-\sigma_1\right)^2}.
 $$
 
 ### Octahedral Stress
