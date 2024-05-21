@@ -2,6 +2,26 @@
 Stress tensor, hydrostatic stress tensor, deviatoric stress tensor, directional stress tensor, invariants of stress tensor and deviatoric stress tensor, principal stresses and shear stresses, von Mises stress, octahedral stresses and Mohr's diagram in Matlab for the case when all components of stress tensor are given.
 The script is programmed with extended formulas for the purpose of stress-free export to other languages, if necessary.
 
+## Table of Contents
+
+- [Theoretical Background](#theoretical-background)
+    - [Stress Tensor](#stress-tensor)
+    - [Thermodynamic Pressure](#thermodynamic-pressure)
+    - [Hydrostatic Stress Tensor](#hydrostatic-stress-tensor)
+    - [Deviatoric Stress Tensor](#deviatoric-stress-tensor)
+    - [Invariants of the Stress Tensor](#invariants-of-the-stress-tensor)
+    - [Invariants of the Deviatoric Stress Tensor](#invariants-of-the-deviatoric-stress-tensor)
+    - [Principal Stresses](#principal-stresses)
+    - [Von Mises Stress](#von-mises-stress)
+    - [Octahedral Stress](#octahedral-stress)
+    - [Directional Stress Tensor](#directional-stress-tensor)
+    - [Principal Shear Stresses](#principal-shear-stresses)
+    - [Stress Norm](#stress-norm)
+    - [Stress Total Measure](#stress-total-measure)
+    - [Mohr's Diagram](#mohrs-diagram)
+- [Examples](#examples)
+- [References](#references)
+
  ## Theoretical background
  
  ### Stress Tensor
