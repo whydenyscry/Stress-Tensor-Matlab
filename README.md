@@ -19,7 +19,7 @@ The script is programmed with extended formulas for the purpose of stress-free e
     - [Stress Norm](#stress-norm)
     - [Stress Total Measure](#stress-total-measure)
     - [Mohr's Diagram](#mohrs-diagram)
-- [Examples](#examples)
+- [Example](#example)
 - [References](#references)
 
  ## Theoretical background
@@ -284,11 +284,11 @@ In the script _StressTensor.m_ the plotting of the Mohr's diagram for the tensor
 
 $$
 \boldsymbol{\sigma} =
-\begin{pmatrix}
+\begin{bmatrix}
 			-22.2 & 9.1 & 7.3 \\
 			9.1 & -16.9 & -4.6 \\
 			7.3 & -4.6 & 31.8 \\
-		\end{pmatrix}
+		\end{bmatrix}
 $$
 
 ![The Mohr's Diagram](https://github.com/whydenyscry/Stress-Tensor-Matlab/blob/main/images/The_Mohrs_Diagram.png)
