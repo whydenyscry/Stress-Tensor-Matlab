@@ -157,13 +157,12 @@ $$
 
 then
 
-$$
-\Theta = \frac{1}{3}\arccos \mathcal{L} \in \left[0,\dfrac{\pi}{3}\right],
-$$
-
-$$
-\bar\Theta = \Theta - \frac{\pi}{6} = -\frac{1}{3}\arcsin\mathcal{L} \in \left[-\frac{\pi}{6},\frac{\pi}{6}\right],
-$$
+```math
+	\begin{gather}
+		\Theta = \frac{1}{3}\arccos \mathcal{L} \in \left[0,\dfrac{\pi}{3}\right],\\
+		\bar\Theta = \Theta - \frac{\pi}{6} = -\frac{1}{3}\arcsin\mathcal{L} \in \left[-\frac{\pi}{6},\frac{\pi}{6}\right],
+	\end{gather}
+```
 
 so principal stresses $\sigma_1,\sigma_2,\sigma_3$
 
