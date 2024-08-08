@@ -156,7 +156,6 @@ $$
 $$
 
 then
-
 ```math
 	\begin{gather}
 		\Theta = \frac{1}{3}\arccos \mathcal{L} \in \left[0,\dfrac{\pi}{3}\right],\\
