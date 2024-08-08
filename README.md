@@ -43,7 +43,6 @@ The script is programmed with extended formulas for the purpose of stress-free e
  $$
 \sigma_\text{v} = \text{tr}\boldsymbol{\sigma},
  $$
- 
  $$
 \sigma_\text{m} = \frac{1}{3}\sigma_\text{v}.
  $$
@@ -51,7 +50,7 @@ The script is programmed with extended formulas for the purpose of stress-free e
  ### Hydrostatic Stress Tensor
  
  $$
-\boldsymbol{\sigma}_\text{hyd} = \sigma_\text{m}\mathbf{I}.
+\boldsymbol{\sigma}\_\text{hyd} = \sigma\_\text{m}\mathbf{I}.
  $$
 
  ### Deviatoric Stress Tensor
