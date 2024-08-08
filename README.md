@@ -97,13 +97,12 @@ The script is programmed with extended formulas for the purpose of stress-free e
 
 The principal stresses are eigenvalues of the stress tensor, therefore
 
-$$
-\det\left(\boldsymbol{\sigma}-\sigma\mathbf{I}\right)=0\Rightarrow\sigma^3-I_1\sigma^2+I_2\sigma-I_3=0,
-$$
-
-$$
-\det\left(\boldsymbol{\sigma}'-\sigma'\mathbf{I}\right)=0\Rightarrow \sigma'^3-J_2\sigma'-J_3=0.
-$$
+```math
+\begin{gather}
+		\det\left(\boldsymbol{\sigma}-\sigma\mathbf{I}\right)=0\Rightarrow\sigma^3-I_1\sigma^2+I_2\sigma-I_3=0,\\
+		\det\left(\boldsymbol{\sigma}'-\sigma'\mathbf{I}\right)=0\Rightarrow \sigma'^3-J_2\sigma'-J_3=0.
+	\end{gather}
+```
 
 ### Invariants in Terms of Prinicipal Stresses
 
@@ -286,7 +285,7 @@ The corresponding normal stresses $\sigma_{13}, \sigma_{12}, \sigma_{23}$ acting
 		\begin{bmatrix}
 			\sigma_1+\sigma_3\\
 			\sigma_1+\sigma_2\\
-			\sigma_2+\sigma_3\\
+			\sigma_2+\sigma_3
 		\end{bmatrix}
 	\end{gather}
 ```
