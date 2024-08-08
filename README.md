@@ -6,7 +6,7 @@ The script is programmed with extended formulas for the purpose of stress-free e
 
 - [Theoretical Background](#theoretical-background)
     - [Cauchy Stress Tensor](#cauchy-stress-tensor)
-    - [Volumetric & Mean Stress](#volumetric-mean-stress)
+    - [Volumetric & Mean Stress](#volumetric--mean-stress)
     - [Hydrostatic Stress Tensor](#hydrostatic-stress-tensor)
     - [Deviatoric Stress Tensor](#deviatoric-stress-tensor)
     - [Invariants of the Stress Tensor](#invariants-of-the-stress-tensor)
@@ -40,12 +40,10 @@ The script is programmed with extended formulas for the purpose of stress-free e
  
  ### Volumetric & Mean Stress
  
- $$
-\sigma_\text{v} = \text{tr}\boldsymbol{\sigma},
- $$
- $$
+```math
+\sigma_\text{v} = \text{tr}\boldsymbol{\sigma},\\
 \sigma_\text{m} = \frac{1}{3}\sigma_\text{v}.
- $$
+```
  
  ### Hydrostatic Stress Tensor
  
