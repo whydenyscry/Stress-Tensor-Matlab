@@ -262,7 +262,7 @@ $$
 		\begin{bmatrix}
 			\sigma_1-\sigma_3\\
 			\sigma_1-\sigma_2\\
-			\sigma_2-\sigma_3\\
+			\sigma_2-\sigma_3
 		\end{bmatrix},
 		\\
 		\tau_\text{max} = \tau_{13}.
