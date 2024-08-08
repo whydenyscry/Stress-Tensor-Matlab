@@ -143,13 +143,12 @@ $$
 
 Closed-form solution for ordered eigenvalues (principal stresses)
 
-$$
-\sigma_1\geq\sigma_2\geq\sigma_3,
-$$
-
-$$
-\sigma_1'\geq\sigma_2'\geq\sigma_3'
-$$
+```math
+\begin{gather}
+		\sigma_1\geq\sigma_2\geq\sigma_3,\\
+		\sigma_1'\geq\sigma_2'\geq\sigma_3'
+	\end{gather}
+```
 
 can be obtained via Lode angle $\Theta$ (or azimuthal Lode angle $\bar\Theta$). Define Lode parameter $\mathcal{L}$ as
 
@@ -227,13 +226,12 @@ $$
 
 ### Octahedral Stress
 
-$$
-\sigma_\text{oct.} = \frac{1}{3}I_1,
-$$
-
-$$
-\tau_\text{oct.} = \sqrt{\frac{2}{3}J_2}=\frac{1}{3}\sqrt{\left(\sigma_1-\sigma_2\right)^2+\left(\sigma_2-\sigma_3\right)^2+\left(\sigma_3-\sigma_1\right)^2}.
-$$
+```math
+\begin{gather}
+		\sigma_\text{oct.} = \sigma_\text{m},\\
+		\tau_\text{oct.} = \sqrt{\frac{2}{3}J_2} = \frac{1}{3}\sqrt{\left(\sigma_1-\sigma_2\right)^2+\left(\sigma_2-\sigma_3\right)^2+\left(\sigma_3-\sigma_1\right)^2}.
+	\end{gather}
+```
 
 ### Directional Stress Tensor
 The directional stress tensor determines only the principal stresses and the relationship between the components of the stress tensor directions of stresses and the relationship between the components of the stress tensor, but doesn't determine their values, since the components of the directional stress tensor are dimensionless.
@@ -256,36 +254,42 @@ $$
 
 ### Principal Shear Stresses
 
-$$
-\tau_{13} = \frac{1}{2}\left(\sigma_1-\sigma_3\right),
-$$
-
-$$
-\tau_{12} = \frac{1}{2}\left(\sigma_1-\sigma_2\right),
-$$
-
-$$
-\tau_{23} = \frac{1}{2}\left(\sigma_2-\sigma_3\right),
-$$
-
-$$
-\tau_\text{max} = \tau_{13}.
-$$
+```math
+\begin{gather}
+		\begin{bmatrix}
+			\tau_{13}\\
+			\tau_{12}\\
+			\tau_{23}
+		\end{bmatrix}
+		=\frac{1}{2}
+		\begin{bmatrix}
+			\sigma_1-\sigma_3\\
+			\sigma_1-\sigma_2\\
+			\sigma_2-\sigma_3\\
+		\end{bmatrix},
+		\\
+		\tau_\text{max} = \tau_{13}.
+	\end{gather}
+```
 
 The corresponding normal stresses $\sigma_{13}, \sigma_{12}, \sigma_{23}$ acting on the sections where
 	$\tau_{13}, \tau_{12}, \tau_{23}$ are acting, respectively, are
 	
-$$
-\sigma_{13} = \frac{1}{2}\left(\sigma_1+\sigma_3\right),
-$$
-
-$$
-\sigma_{12} = \frac{1}{2}\left(\sigma_1+\sigma_2\right),
-$$
-
-$$
-\sigma_{23} = \frac{1}{2}\left(\sigma_2+\sigma_3\right).
-$$
+```math
+\begin{gather}
+		\begin{bmatrix}
+			\sigma_{13}\\
+			\sigma_{12}\\
+			\sigma_{23}
+		\end{bmatrix}
+		=\frac{1}{2}
+		\begin{bmatrix}
+			\sigma_1+\sigma_3\\
+			\sigma_1+\sigma_2\\
+			\sigma_2+\sigma_3\\
+		\end{bmatrix}
+	\end{gather}
+```
 
 ### Mohr's Diagram
 
