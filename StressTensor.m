@@ -16,35 +16,65 @@ bf_sigma = [sigma_x tau_xy tau_xz;
            tau_yx sigma_y tau_yz;
            tau_zx tau_zy sigma_z]
 
-P = -(sigma_x/3 + sigma_y/3 + sigma_z/3)
-bf_sigma_hydrostatic = -P*eye(3)
+sigma_v = sigma_x + sigma_y + sigma_z
+sigma_m = 1/3 * sigma_v
+bf_sigma_hydrostatic = sigma_m*eye(3)
 bf_sigma_prime = bf_sigma - bf_sigma_hydrostatic
 
 I_1 = sigma_x + sigma_y + sigma_z
 I_2 = sigma_x*sigma_y + sigma_x*sigma_z + sigma_y*sigma_z - tau_xy*tau_yx - tau_xz*tau_zx - tau_yz*tau_zy
 I_3 = sigma_x*sigma_y*sigma_z - sigma_z*tau_xy*tau_yx - sigma_y*tau_xz*tau_zx - sigma_x*tau_yz*tau_zy + tau_xy*tau_zx*tau_yz + tau_yx*tau_xz*tau_zy
-
-% % via bf_sigma
-% J_1 = 0
-% J_2 = sigma_x^2/3 - (sigma_x*sigma_y)/3 - (sigma_x*sigma_z)/3 + sigma_y^2/3 - (sigma_y*sigma_z)/3 + sigma_z^2/3 + tau_xy*tau_yx + tau_xz*tau_zx + tau_yz*tau_zy
-% J_3 (2*sigma_x^3)/27 - (sigma_x^2*sigma_y)/9 - (sigma_x*sigma_z^2)/9 - (sigma_x^2*sigma_z)/9 - (sigma_y*sigma_z^2)/9 - (sigma_y^2*sigma_z)/9 - (sigma_x*sigma_y^2)/9 + (2*sigma_y^3)/27 + (2*sigma_z^3)/27 + (4*sigma_x*sigma_y*sigma_z)/9 + (sigma_x*tau_xy*tau_yx)/3 + (sigma_y*tau_xy*tau_yx)/3 + (sigma_x*tau_xz*tau_zx)/3 - (2*sigma_z*tau_xy*tau_yx)/3 - (2*sigma_y*tau_xz*tau_zx)/3 - (2*sigma_x*tau_yz*tau_zy)/3 + (sigma_z*tau_xz*tau_zx)/3 + (sigma_y*tau_yz*tau_zy)/3 + (sigma_z*tau_yz*tau_zy)/3 + tau_xy*tau_zx*tau_yz + tau_yx*tau_xz*tau_zy;
+% I_1 = trace(bf_sigma)
+% I_2 = 1/2 * (trace(bf_sigma) ^ 2 - trace(bf_sigma ^ 2))
+% I_3 = det(bf_sigma)
 
 J_1 = 0
-J_2 = 1/3*I_1^2 - I_2
-J_3 = 2/27*I_1^3 - 1/3*I_1*I_2 + I_3
+J_2 = 1/3 * I_1 ^ 2 - I_2
+J_3 = 2/27 * I_1 ^ 3 - 1 / 3 * I_1 * I_2 + I_3
+% J_1 = 0
+% J_2 = 1/2 * trace(bf_sigma_prime ^ 2)
+% J_3 = det(bf_sigma_prime)
+% J_1 = 0
+% J_2 = sigma_x^2/3 - (sigma_x*sigma_y)/3 - (sigma_x*sigma_z)/3 + sigma_y^2/3 - (sigma_y*sigma_z)/3 + sigma_z^2/3 + tau_xy*tau_yx + tau_xz*tau_zx + tau_yz*tau_zy
+% J_3 = (2*sigma_x^3)/27 - (sigma_x^2*sigma_y)/9 - (sigma_x*sigma_z^2)/9 - (sigma_x^2*sigma_z)/9 - (sigma_y*sigma_z^2)/9 - (sigma_y^2*sigma_z)/9 - (sigma_x*sigma_y^2)/9 + (2*sigma_y^3)/27 + (2*sigma_z^3)/27 + (4*sigma_x*sigma_y*sigma_z)/9 + (sigma_x*tau_xy*tau_yx)/3 + (sigma_y*tau_xy*tau_yx)/3 + (sigma_x*tau_xz*tau_zx)/3 - (2*sigma_z*tau_xy*tau_yx)/3 - (2*sigma_y*tau_xz*tau_zx)/3 - (2*sigma_x*tau_yz*tau_zy)/3 + (sigma_z*tau_xz*tau_zx)/3 + (sigma_y*tau_yz*tau_zy)/3 + (sigma_z*tau_yz*tau_zy)/3 + tau_xy*tau_zx*tau_yz + tau_yx*tau_xz*tau_zy
 
-theta = asin(-J_3/2*(3/J_2)^(3/2))/3
+sigma_vM = sqrt(3 * J_2)
+% sigma_vM = sqrt(3/2 * trace(bf_sigma_prime ^ 2))
+% sigma_vM = sqrt(sigma_x^2 - sigma_x*sigma_y - sigma_x*sigma_z + sigma_y^2 - sigma_y*sigma_z + sigma_z^2 + 3*tau_xy*tau_yx + 3*tau_xz*tau_zx + 3*tau_yz*tau_zy)
+% sigma_vM = sqrt(sigma_1^2 - sigma_1*sigma_2 - sigma_1*sigma_3 + sigma_2^2 - sigma_2*sigma_3 + sigma_3^2)
 
-sigma_1 = I_1/3 + 2/sqrt(3)*sqrt(J_2)*sin(theta + 2*pi/3)
-sigma_2 = I_1/3 + 2/sqrt(3)*sqrt(J_2)*sin(theta)
-sigma_3 = I_1/3 + 2/sqrt(3)*sqrt(J_2)*sin(theta - 2*pi/3)
+Lode_parameter = 27/2 * J_3 / sigma_vM ^ 3 
+Theta = 1/3 * acos(Lode_parameter)
+Theta_bar = Theta - pi/6
 
-% sorted_pr = cellfun(@(x) sort(x, "descend"), {sigma_1, sigma_2, sigma_3}, "UniformOutput", 0)
-% [sigma_1, sigma_2, sigma_3] = sorted_pr{:}
+sigma_1 = sigma_m + 2/3 * sigma_vM * cos(Theta)
+sigma_2 = sigma_m + 2/3 * sigma_vM * cos(Theta - 2*pi/3)
+sigma_3 = sigma_m + 2/3 * sigma_vM * cos(Theta + 2*pi/3)
+% sigma_1 = sigma_m + 2/3 * sigma_vM * sin(Theta_bar + 2*pi/3)
+% sigma_2 = sigma_m + 2/3 * sigma_vM * sin(Theta_bar)
+% sigma_3 = sigma_m + 2/3 * sigma_vM * sin(Theta_bar - 2*pi/3)
 
-sigma_1_prime = sigma_1 - I_1/3 
-sigma_2_prime = sigma_2 - I_1/3 
-sigma_3_prime = sigma_3 - I_1/3
+% % sorted_pr = cellfun(@(x) sort(x, "descend"), {sigma_1, sigma_2, sigma_3}, "UniformOutput", 0)
+% % [sigma_1, sigma_2, sigma_3] = sorted_pr{:}
+
+sigma_1_prime = sigma_1 - sigma_m
+sigma_2_prime = sigma_2 - sigma_m 
+sigma_3_prime = sigma_3 - sigma_m
+
+T_X = sigma_m / sigma_vM
+
+sigma_oct = sigma_m
+
+tau_oct = sqrt(2 / 3 * J_2)
+% tau_oct = 1/3*sqrt((sigma_1 - sigma_2)^2 + (sigma_2 - sigma_3)^2 + (sigma_3 - sigma_1)^2)
+
+bar_bf_sigma_prime = bf_sigma_prime/tau_oct
+
+sigma_norm = sqrt(trace(bf_sigma ^ 2))
+% sigma_norm = sqrt(sigma_x^2 + sigma_y^2 + sigma_z^2 + tau_xy^2 + tau_yx^2 + tau_xz^2 + tau_zx^2 + tau_yz^2 + tau_zy^2)
+
+sigma_tm = sqrt(sigma_1^2 + sigma_2^2 + sigma_3^2)
+% sigma_tm = sqrt(I_1^2/3 + 2*J_2)
 
 tau_13 = 1/2*(sigma_1 - sigma_3)
 tau_12 = 1/2*(sigma_1 - sigma_2)
@@ -53,23 +83,6 @@ tau_23 = 1/2*(sigma_2 - sigma_3)
 sigma_13 = 1/2*(sigma_1 + sigma_3)
 sigma_12 = 1/2*(sigma_1 + sigma_2)
 sigma_23 = 1/2*(sigma_2 + sigma_3)
-
-sigma_oct = 1/3*I_1
-
-% tau_oct = 1/3*sqrt((sigma_1 - sigma_2)^2 + (sigma_2 - sigma_3)^2 + (sigma_3 - sigma_1)^2)
-tau_oct = sqrt(2/3*J_2)
-
-bar_bf_sigma_prime = bf_sigma_prime/tau_oct
-
-% sigma_vM = sqrt(sigma_x^2 - sigma_x*sigma_y - sigma_x*sigma_z + sigma_y^2 - sigma_y*sigma_z + sigma_z^2 + 3*tau_xy*tau_yx + 3*tau_xz*tau_zx + 3*tau_yz*tau_zy)
-% sigma_vM = sqrt(sigma_1^2 - sigma_1*sigma_2 - sigma_1*sigma_3 + sigma_2^2 - sigma_2*sigma_3 + sigma_3^2)
-sigma_vM = sqrt(3*J_2)
-
-sigma_norm = sqrt(trace(bf_sigma'*bf_sigma))
-% sigma_norm = sqrt(sigma_x^2 + sigma_y^2 + sigma_z^2 + tau_xy^2 + tau_yx^2 + tau_xz^2 + tau_zx^2 + tau_yz^2 + tau_zy^2)
-
-sigma_tm = sqrt(sigma_1^2 + sigma_2^2 + sigma_3^2)
-% sigma_tm = sqrt(I_1^2/3 + 2*J_2)
 
 figure()
 set(groot, "defaultAxesTickLabelInterpreter", "latex");

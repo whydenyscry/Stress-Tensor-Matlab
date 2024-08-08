@@ -1,30 +1,33 @@
 # Stress Tensor in Matlab
-Stress tensor, hydrostatic stress tensor, deviatoric stress tensor, directional stress tensor, invariants of stress tensor and deviatoric stress tensor, principal stresses and shear stresses, von Mises stress, octahedral stresses and Mohr's diagram in Matlab for the case when all components of stress tensor are given.
+Stress tensor, hydrostatic stress tensor, deviatoric stress tensor, directional stress tensor, invariants of stress tensor and deviatoric stress tensor, principal stresses and shear stresses, von Mises stress, stress triaxiality, Lode angle, octahedral stresses and Mohr's diagram in Matlab for the case when all components of stress tensor are given.
 The script is programmed with extended formulas for the purpose of stress-free export to other languages, if necessary.
 
 ## Table of Contents
 
 - [Theoretical Background](#theoretical-background)
-    - [Stress Tensor](#stress-tensor)
-    - [Thermodynamic Pressure](#thermodynamic-pressure)
+    - [Cauchy Stress Tensor](#cauchy-stress-tensor)
+    - [Volumetric & Mean Stress](#volumetric-mean-stress)
     - [Hydrostatic Stress Tensor](#hydrostatic-stress-tensor)
     - [Deviatoric Stress Tensor](#deviatoric-stress-tensor)
     - [Invariants of the Stress Tensor](#invariants-of-the-stress-tensor)
     - [Invariants of the Deviatoric Stress Tensor](#invariants-of-the-deviatoric-stress-tensor)
     - [Principal Stresses](#principal-stresses)
-    - [Von Mises Stress](#von-mises-stress)
+	- [Invariants in Terms of Prinicipal Stresses](#invariants-in-terms-of-prinicipal-stresses)
+    - [Von Mises Equivalent Stress](#von-mises-equivalent-stress)
+	- [Lode Angle Dependency](#lode-angle-dependency)
+	- [Stress Triaxiality](#stress-triaxiality)
     - [Octahedral Stress](#octahedral-stress)
     - [Directional Stress Tensor](#directional-stress-tensor)
-    - [Principal Shear Stresses](#principal-shear-stresses)
-    - [Stress Norm](#stress-norm)
+	- [Stress Norm](#stress-norm)
     - [Stress Total Measure](#stress-total-measure)
+    - [Principal Shear Stresses](#principal-shear-stresses)
     - [Mohr's Diagram](#mohrs-diagram)
 - [Example](#example)
 - [References](#references)
 
  ## Theoretical background
  
- ### Stress Tensor
+ ### Cauchy Stress Tensor
  
  $$
  \boldsymbol{\sigma} = 
@@ -35,16 +38,20 @@ The script is programmed with extended formulas for the purpose of stress-free e
 	\end{bmatrix}.
  $$
  
- ### Thermodynamic Pressure
+ ### Volumetric & Mean Stress
  
  $$
-P = -\frac{1}{3}\text{tr}\boldsymbol{\sigma}.
+\sigma_\text{v} = \text{tr}\boldsymbol{\sigma},
+ $$
+ 
+ $$
+\sigma_\text{m} = \frac{1}{3}\sigma_\text{v}.
  $$
  
  ### Hydrostatic Stress Tensor
  
  $$
-\boldsymbol{\sigma}_\text{hyd} = -P\mathbf{I}.
+\boldsymbol{\sigma}_\text{hyd} = \sigma_\text{m}\mathbf{I}.
  $$
 
  ### Deviatoric Stress Tensor
@@ -99,59 +106,7 @@ $$
 \det\left(\boldsymbol{\sigma}'-\sigma'\mathbf{I}\right)=0\Rightarrow \sigma'^3-J_2\sigma'-J_3=0.
 $$
 
-The closed-form solution for the ordered eigenvalues can be obtained via the Lode angle $\theta$:
-
-$$
-\sin\left(3\theta\right)=-\frac{J_3}{2}\left(\frac{3}{J_2}\right)^{3/2},
-$$
-
-$$
-	\begin{bmatrix}
-			\sigma_1\\
-			\sigma_2\\
-			\sigma_3
-		\end{bmatrix} = \frac{1}{3} \begin{bmatrix}
-		I_1\\
-		I_1\\
-		I_1\\
-		\end{bmatrix}+\frac{2}{\sqrt{3}}\sqrt{J_2} \begin{bmatrix}
-		\sin\left(\theta+\frac{2\pi}{3}\right)\\
-		\sin\theta\\
-		\sin\left(\theta-\frac{2\pi}{3}\right)
-		\end{bmatrix}.
-$$
-
-$$
-\begin{bmatrix}
-			\sigma_1'\\
-			\sigma_2'\\
-			\sigma_3'
-		\end{bmatrix} = \begin{bmatrix}
-		\sigma_1\\
-		\sigma_2\\
-		\sigma_3
-		\end{bmatrix} - \frac{1}{3} \begin{bmatrix}
-		I_1\\
-		I_1\\
-		I_1\\
-		\end{bmatrix}=\frac{2}{\sqrt{3}}\sqrt{J_2} \begin{bmatrix}
-		\sin\left(\theta+\frac{2\pi}{3}\right)\\
-		\sin\theta\\
-		\sin\left(\theta-\frac{2\pi}{3}\right)
-		\end{bmatrix}.
-$$
-
-The principal stresses are sorted as follows
-
-$$
-\sigma_1\geq\sigma_2\geq\sigma_3,
-$$
-	
-$$
-\sigma_1'\geq\sigma_2'\geq\sigma_3'.
-$$
-	
-Then invariants can be expressed in terms of principal stresses
+### Invariants in Terms of Prinicipal Stresses
 
 $$
 \begin{bmatrix}
@@ -179,10 +134,96 @@ $$
 		\end{bmatrix}.
 $$
 
-### Von Mises Stress
+### Von Mises Equivalent Stress
 
 $$
-\sigma_\text{vM} = \sqrt{3J_2} = \frac{1}{\sqrt{2}}\sqrt{\left(\sigma_1-\sigma_2\right)^2+\left(\sigma_2-\sigma_3\right)^2+\left(\sigma_3-\sigma_1\right)^2}.
+\sigma_\text{vM} = \sqrt{\frac{3}{2}\boldsymbol{\sigma}':\boldsymbol{\sigma}'}= \sqrt{3J_2}= \frac{1}{\sqrt{2}}\sqrt{\left(\sigma_1-\sigma_2\right)^2+\left(\sigma_2-\sigma_3\right)^2+\left(\sigma_3-\sigma_1\right)^2}.
+$$
+
+### Lode Angle Dependency
+
+Closed-form solution for ordered eigenvalues (principal stresses)
+
+$$
+\sigma_1\geq\sigma_2\geq\sigma_3,
+$$
+
+$$
+\sigma_1'\geq\sigma_2'\geq\sigma_3'
+$$
+
+can be obtained via Lode angle $\Theta$ (or azimuthal Lode angle $\bar\Theta$). Define Lode parameter $\mathcal{L}$ as
+
+$$
+	\mathcal{L}=\frac{27}{2} \frac{J_3}{\sigma_\text{vM}^3}=\cos 3\Theta=-\sin 3\bar\Theta,
+$$
+
+then
+
+$$
+\Theta = \frac{1}{3}\arccos \mathcal{L} \in \left[0,\dfrac{\pi}{3}\right],
+$$
+
+$$
+\bar\Theta = \Theta - \frac{\pi}{6} = -\frac{1}{3}\arcsin\mathcal{L} \in \left[-\frac{\pi}{6},\frac{\pi}{6}\right],
+$$
+
+so principal stresses $\sigma_1,\sigma_2,\sigma_3$
+
+$$
+\begin{bmatrix}
+			\sigma_1\\
+			\sigma_2\\
+			\sigma_3
+		\end{bmatrix} = \begin{bmatrix}
+			\sigma_\text{m}\\
+			\sigma_\text{m}\\
+			\sigma_\text{m}
+		\end{bmatrix} + \frac{2}{3}\sigma_\text{vM} \cos\begin{bmatrix}
+			\Theta\\
+			\Theta-\dfrac{2\pi}{3}\\
+			\Theta+\dfrac{2\pi}{3}
+		\end{bmatrix}= \begin{bmatrix}
+			\sigma_\text{m}\\
+			\sigma_\text{m}\\
+			\sigma_\text{m}
+		\end{bmatrix} + \frac{2}{3}\sigma_\text{vM} \sin\begin{bmatrix}
+			\bar\Theta+\dfrac{2\pi}{3}\\
+			\bar\Theta\\
+			\bar\Theta-\dfrac{2\pi}{3}
+		\end{bmatrix},
+$$	
+
+and deviatoric principal stresses $\sigma_1',\sigma_2',\sigma_3'$
+
+$$
+\begin{bmatrix}
+			\sigma_1'\\
+			\sigma_2'\\
+			\sigma_3'
+		\end{bmatrix} = \begin{bmatrix}
+			\sigma_1\\
+			\sigma_2\\
+			\sigma_3
+		\end{bmatrix} - \begin{bmatrix}
+			\sigma_\text{m}\\
+			\sigma_\text{m}\\
+			\sigma_\text{m}
+		\end{bmatrix} = \frac{2}{3}\sigma_\text{vM} \cos\begin{bmatrix}
+			\Theta\\
+			\Theta-\dfrac{2\pi}{3}\\
+			\Theta+\dfrac{2\pi}{3}
+		\end{bmatrix} = \frac{2}{3}\sigma_\text{vM} \sin\begin{bmatrix}
+			\bar\Theta+\dfrac{2\pi}{3}\\
+			\bar\Theta\\
+			\bar\Theta-\dfrac{2\pi}{3}
+		\end{bmatrix}.
+$$	
+
+### Stress Triaxiality
+
+$$
+T_X = \frac{\sigma_\text{m}}{\sigma_\text{vM}}.
 $$
 
 ### Octahedral Stress
@@ -200,6 +241,18 @@ The directional stress tensor determines only the principal stresses and the rel
 
 $$
 \overline{\boldsymbol{\sigma}}' = \frac{1}{\tau_\text{oct.}}\boldsymbol{\sigma}'.
+$$
+
+### Stress Norm
+
+$$
+\sigma_\text{norm} = \left\lVert\boldsymbol{\sigma}\right\rVert = \sqrt{\boldsymbol{\sigma}:\boldsymbol{\sigma}}=\sqrt{\text{tr}\left(\boldsymbol{\sigma}^2\right)}.
+$$
+
+### Stress Total Measure
+
+$$
+\sigma_\text{tm} = \sqrt{\sigma_1^2+\sigma_2^2+\sigma_3^2}=\sqrt{\frac{1}{3}I_1^2+2J_2}.
 $$
 
 ### Principal Shear Stresses
@@ -233,18 +286,6 @@ $$
 
 $$
 \sigma_{23} = \frac{1}{2}\left(\sigma_2+\sigma_3\right).
-$$
-
-### Stress Norm
-
-$$
-\sigma_\text{norm} = \left\lVert\boldsymbol{\sigma}\right\rVert_{F}=\sqrt{\text{tr}\left(\boldsymbol{\sigma}\boldsymbol{\sigma}^{\mathrm{H}}\right)}.
-$$
-
-### Stress Total Measure
-
-$$
-\sigma_\text{tm} = \sqrt{\sigma_1^2+\sigma_2^2+\sigma_3^2}=\sqrt{\frac{1}{3}I_1^2+2J_2}.
 $$
 
 ### Mohr's Diagram
