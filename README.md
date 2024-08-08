@@ -306,18 +306,11 @@ $$
 $$
 
 Centers of circles:
-
-$$
-O_1=\left(\sigma_{23},  0\right),
-$$
-
-$$
-O_2=  \left(\sigma_{13}, 0\right),
-$$
-
-$$
+```math
+O_1=\left(\sigma_{23},  0\right),\\
+O_2=  \left(\sigma_{13}, 0\right),\\
 O_3= \left(\sigma_{12}, 0\right).
-$$
+```
 
 ## Example 
 
