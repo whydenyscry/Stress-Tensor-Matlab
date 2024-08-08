@@ -41,10 +41,10 @@ The script is programmed with extended formulas for the purpose of stress-free e
  ### Volumetric & Mean Stress
  
 ```math
-\begin{aligned}
+\begin{gather}
 \sigma_\text{v} = \text{tr}\boldsymbol{\sigma}, \\
 \sigma_\text{m} = \frac{1}{3}\sigma_\text{v}.
-\end{aligned}
+\end{gather}
 ```
  
  ### Hydrostatic Stress Tensor
