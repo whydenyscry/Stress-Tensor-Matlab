@@ -333,3 +333,4 @@ $$
 1. Chakrabarty, J.(2016). Theory of Plasticity: Third edition
 2. Brannon, R.M. (2009).  KAYENTA: Theory and User's Guide
 3. Yu, M.-H. (2004). Unified Strength Theory and Its Applications. https://doi.org/10.1007/978-3-642-18943-2 
+4. Mattiello, A., & Desmorat, R. (2020). Lode angle dependency  due to anisotropic damage. International Journal of Damage Mechanics, 105678952094856. https://doi.org/10.1177/1056789520948563
